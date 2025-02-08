@@ -7,7 +7,7 @@ import {
   Search,
   UserCircle2,
   FileCheck2,
-  FileContract,
+  FileText,
   Map,
   ScrollText
 } from "lucide-react";
@@ -103,7 +103,7 @@ const features = [
     description: "Verify property ownership with blockchain-backed authentication."
   },
   {
-    icon: <FileContract className="w-8 h-8 text-primary" />,
+    icon: <FileText className="w-8 h-8 text-primary" />,
     title: "Smart Contract Transactions",
     description: "Execute and manage property transactions using smart contracts."
   },
