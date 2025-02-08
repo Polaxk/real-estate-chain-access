@@ -1,5 +1,7 @@
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
 
 interface AuthFormProps {
   type: "civilian" | "government";
@@ -7,6 +9,8 @@ interface AuthFormProps {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ type, mode }) => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     nationalId: "",
     email: "",
@@ -17,8 +21,20 @@ const AuthForm: React.FC<AuthFormProps> = ({ type, mode }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement authentication logic
     console.log("Form submitted:", formData);
+    
+    // Show success toast
+    toast({
+      title: `${mode === "signin" ? "Sign In" : "Sign Up"} Successful`,
+      description: "Welcome to the platform!",
+    });
+
+    // Redirect based on user type
+    if (type === "civilian") {
+      navigate("/civilian");
+    } else {
+      navigate("/government");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
